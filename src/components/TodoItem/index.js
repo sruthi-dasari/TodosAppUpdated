@@ -11,8 +11,8 @@ class TodoItem extends Component {
         isChecked: false,
     }
 
-   const  todoDetails  = this.props
-    const {completed, id, title, userId} = todoDetails
+const { todoDetails } = this.props
+const { completed, id, title, userId } = todoDetails
 
 render() {
 
