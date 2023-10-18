@@ -27,7 +27,17 @@ class Home extends Component {
 
     componentDidMount() {
         this.getInitialTodos()
+        this.setTodolistInContext()
     }
+
+    setTodolistInContext = () =>
+    <TodoContext.Consumer>
+        {value =>{
+            const {todoList} = value
+
+        
+        }}
+    </TodoContext.Consumer>
 
     getInitialTodos = async () => {
 
@@ -40,7 +50,7 @@ class Home extends Component {
         const response = await fetch(url, options)
 
         const data = await response.json()
-        console.log(data)
+        // console.log(data)
 
         const updatedData = data.map(eachItem => ({
             completed: eachItem.completed,

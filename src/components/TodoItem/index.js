@@ -8,17 +8,61 @@ import {
 
 class TodoItem extends Component {
     state = {
-        isChecked: false,
+        completed: false,
+        title: '',
+       
     }
 
-const { todoDetails } = this.props
-const { completed, id, title, userId } = todoDetails
+    onClickTodoCheckbox = () =>
+    <TodoContext.Consumer>
+        {value => {
+            const {changeTodoStatus} = value
+
+            const {todoDetails} = this.props
+            const { completed, id, userId, title} = todoDetails
+
+            changeTodoStatus(id)
+        }}
+    </TodoContext.Consumer>
+        
+    
+    // <TodoContext.Consumer>
+    //     {value => {
+    //         const {todoList} = value
+
+    //         const {todoDetails} = this.props
+    //     const { completed, id, userId, title} = todoDetails
+
+    //         const todoItem = todoList.find(eachItem => 
+    //                 eachItem.id === id
+    //             )
+
+    //         const newTodo = {
+    //             completed: !completed,
+    //             id,
+    //             title,
+    //             userId,
+    //         }
+
+    //         this.setState(({
+    //             todoList: [...todoList, newTodo],
+    //             title: '',
+    //         }))
+    //     }}
+    // </TodoContext.Consumer>
+
 
 render() {
 
+    const { todoDetails } = this.props
+    const { title } = todoDetails
+    const {todoList} = this.state
+
+    console.log(todoList)
+
     return (
         <TodoItemContainer>
-            <CheckBox type="checkbox" />
+            <CheckBox type="checkbox" onClick = {this.onClickTodoCheckbox}/>
             <TodoItemLabelBox>
                 <TodoLabel>{title}</TodoLabel>
                 <EditAndDeleteContainer>
@@ -31,8 +75,5 @@ render() {
 }
         
     }
-
-
-
 
 export default TodoItem

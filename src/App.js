@@ -8,7 +8,11 @@ class App extends Component {
         todoList: [],
     }
     changeTodoStatus = (todoId) => {
-        
+        const todoItem = todoList.find(eachItem => 
+                            eachItem.id === todoId
+                        )
+
+            console.log(todoItem)
     }
 
     render() {
